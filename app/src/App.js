@@ -1,3 +1,8 @@
+import Colors from './pages/colors'
+import Starwars from './pages/starwars'
+import Buzzwords from './pages/buzzwords'
+import Fortunecookies from './pages/fortunecookies'
+import Emojislist from './pages/emojislist'
 import React from 'react'
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
 
@@ -32,6 +37,11 @@ const App = props => {
       <div>
         <Switch>
           <Route exact path="/" component={Menu} />
+          <Route path="/colors" component={Colors} />
+          <Route path="/starwars" component={Starwars} />
+          <Route path="/buzzwords" component={Buzzwords} />
+          <Route path="/fortunecookies" component={Fortunecookies} />
+          <Route path="/emojislist" component={Emojislist} />
         </Switch>
       </div>
     </BrowserRouter>

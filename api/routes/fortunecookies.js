@@ -4,7 +4,6 @@ const uuid = require('uuid')
 
 const createFortunecookie = k => ({
   id: uuid.v4(),
-  name: k,
   value: prop(k, fortunecookiesObj)
 })
 

@@ -1,14 +1,14 @@
 const starwarsObj = require('starwars-names')
 const { map, keys, prop } = require('ramda')
 const uuid = require('uuid')
+const single = starwarsObj.all
 
 const createstarwars = k => ({
   id: uuid.v4(),
-  name: k,
-  value: prop(k, starwarsObj)
+  value: prop(k, single)
 })
 
-const starwars = map(createstarwars, keys(starwarsObj))
+const starwars = map(createstarwars, keys(single))
 
 module.exports = app => {
   app.get('/starwars', (req, res) => {
