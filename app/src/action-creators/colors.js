@@ -4,5 +4,5 @@ const url = 'http://localhost:5000/colors'
 
 export const setColors = async (dispatch, getState) => {
   const colors = await fetch(url).then(res => res.json())
-  dispatch({ type: SET_COLORS, payload: color })
+  dispatch({ type: SET_COLORS, payload: colors })
 }
