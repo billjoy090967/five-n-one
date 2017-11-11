@@ -1,4 +1,4 @@
-import { SET_EMOJISLIST } from '../constants'
+import { SET_EMOJISLIST, SET_CURRENT_EMOJISLIST } from '../constants'
 import { CHG_CURRENT_EMOJISLIST } from '../constants'
 import { merge } from 'ramda'
 
@@ -17,5 +17,8 @@ export const currentEmojislist = (state = '', action) => {
       return merge(state, action.payload)
     default:
       return state
+
+    case SET_CURRENT_EMOJISLIST:
+      return action.payload
   }
 }

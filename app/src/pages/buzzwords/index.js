@@ -4,9 +4,14 @@ import { map } from 'ramda'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-const li = data => {
-  return <li key={data.id}>{data.value}</li>
+const li = buzzword => {
+  return (
+    <li key={buzzword.id} style={{ buzzword: buzzword.value }}>
+      <Link to={`/buzzwords/${buzzword.id}`}>{buzzword.value}</Link>
+    </li>
+  )
 }
+
 const Buzzwords = props => {
   return (
     <div>

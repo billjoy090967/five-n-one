@@ -5,7 +5,7 @@ import { addColor, chgColor } from '../../action-creators/colors'
 
 const ColorForm = props => {
   return (
-    <div>
+    <div class="pa3 pa5-ns avenir">
       <h1>Add New Color</h1>
       <Form
         {...props.currentColor}

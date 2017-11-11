@@ -1,5 +1,5 @@
-import { SET_BUZZWORDS } from '../constants'
-import { CHG_CURRENT_BUZZWORDS } from '../constants'
+import { SET_BUZZWORDS, SET_CURRENT_BUZZWORD } from '../constants'
+import { CHG_CURRENT_BUZZWORD } from '../constants'
 import { merge } from 'ramda'
 
 export const buzzwords = (state = [], action) => {
@@ -13,9 +13,11 @@ export const buzzwords = (state = [], action) => {
 
 export const currentBuzzword = (state = '', action) => {
   switch (action.type) {
-    case CHG_CURRENT_BUZZWORDS:
+    case CHG_CURRENT_BUZZWORD:
       return merge(state, action.payload)
     default:
       return state
+    case SET_CURRENT_BUZZWORD:
+      return action.payload
   }
 }

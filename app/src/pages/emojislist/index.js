@@ -4,9 +4,14 @@ import { map } from 'ramda'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-const li = data => {
-  return <li key={data.id}>{data.value}</li>
+const li = emojislist => {
+  return (
+    <li key={emojislist.id}>
+      <Link to={`/emojislist/${emojislist.id}`}>{emojislist.value}</Link>
+    </li>
+  )
 }
+
 const Emojislist = props => {
   return (
     <div>
@@ -24,5 +29,3 @@ const mapStateToProps = state => {
 const connector = connect(mapStateToProps)
 
 export default connector(Emojislist)
-
-// .... component function

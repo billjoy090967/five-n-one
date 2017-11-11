@@ -1,4 +1,4 @@
-import { SET_STARWARS } from '../constants'
+import { SET_STARWARS, SET_CURRENT_STARWARS } from '../constants'
 import { CHG_CURRENT_STARWARS } from '../constants'
 import { merge } from 'ramda'
 
@@ -17,5 +17,7 @@ export const currentStarwars = (state = '', action) => {
       return merge(state, action.payload)
     default:
       return state
+    case SET_CURRENT_STARWARS:
+      return action.payload
   }
 }

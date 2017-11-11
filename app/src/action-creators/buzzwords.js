@@ -1,6 +1,9 @@
 import fetch from 'isomorphic-fetch'
-import { SET_BUZZWORDS } from '../constants'
-import { CHG_CURRENT_BUZZWORDS } from '../constants'
+import {
+  SET_BUZZWORDS,
+  SET_CURRENT_BUZZWORD,
+  CHG_CURRENT_BUZZWORD
+} from '../constants'
 const url = 'http://localhost:5000/buzzwords'
 
 export const setBuzzwords = async (dispatch, getState) => {
@@ -21,14 +24,49 @@ export const addBuzzword = (buzzword, history) => async (
     method,
     body
   }).then(res => res.json())
+
   if (result.ok) {
     dispatch(setBuzzwords)
     history.push('/buzzwords')
   } else {
-    // handle error
   }
 }
 
 export const chgBuzzword = (field, value) => (dispatch, getState) => {
-  dispatch({ type: CHG_CURRENT_BUZZWORDS, payload: { [field]: value } })
+  dispatch({ type: CHG_CURRENT_BUZZWORD, payload: { [field]: value } })
+}
+
+export const getBuzzword = id => async (dispatch, getState) => {
+  const buzzword = await fetch(url + '/' + id).then(res => res.json())
+  dispatch({ type: SET_CURRENT_BUZZWORD, payload: buzzword })
+}
+
+export const removeBuzzword = (id, history) => async (dispatch, getState) => {
+  const results = await fetch(url + '/' + id, {
+    method: 'DELETE'
+  }).then(res => res.json())
+
+  if (results.ok) {
+    dispatch(setBuzzwords)
+    history.push('/buzzwords')
+  } else {
+  }
+}
+
+export const updateBuzzword = (buzzword, history) => async (
+  dispatch,
+  getState
+) => {
+  const result = await fetch(url + '/' + buzzword.id, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'PUT',
+    body: JSON.stringify(buzzword)
+  }).then(res => res.json())
+
+  if (result.ok) {
+    dispatch(setBuzzwords)
+    history.push('/buzzwords/' + buzzword.id)
+  }
 }
